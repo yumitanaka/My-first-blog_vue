@@ -1,7 +1,7 @@
 <template>
   <div class="header">
-    <a href class="signIn">Sing In</a>
-    <a href class="logIn">Log In</a>
+    <router-link to="/signup">Sing Up</router-link> |
+    <router-link to="/login">Log In</router-link>
   </div>
 </template>
 
@@ -12,15 +12,14 @@ export default {};
 <style scoped>
 .header {
   /* background-color: green; */
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
+  width: 98%;
   height: 5%;
   position: fixed;
-  top: 0;
+  text-align: right;
+  margin-top: 1%;
 }
 
-.signIn {
+/* .signIn {
   text-decoration: none;
   line-height: 40px;
   margin-left: 90%;
@@ -34,5 +33,5 @@ export default {};
   margin-left: 2%;
   font-family: arial;
   font-size: small;
-}
+} */
 </style>
