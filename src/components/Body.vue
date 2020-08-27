@@ -1,5 +1,5 @@
 <template>
-<div class= 'Estilo'>
+<div class= 'estilo'>
   <painel-esquerdo />
   <painel-direito />
 </div>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped>
-.Estilo {
+.estilo {
   margin: 0px;
   padding: 0px;
   width: 100%;
@@ -26,6 +26,6 @@ export default {
   position: fixed;
   bottom:  0;
   left: 0;
-  background-color: silver;
+/*   background-color: silver; */
 }
 </style>

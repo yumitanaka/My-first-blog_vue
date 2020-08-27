@@ -1,13 +1,8 @@
 <template>
-<div class="home">
- <header>
-   <Header/>
- </header>
-  <body>
+  <div class="home">
+    <Header />
     <Body />
-  </body>
-  <footer></footer>
-</div>
+  </div>
 </template>
 
 <script>

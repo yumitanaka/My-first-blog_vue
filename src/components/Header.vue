@@ -1,7 +1,7 @@
 <template>
-  <div class="Header">
-    <a href class="SignIn">Sing In</a>
-    <a href class="LogIn">Log In</a>
+  <div class="header">
+    <a href class="signIn">Sing In</a>
+    <a href class="logIn">Log In</a>
   </div>
 </template>
 
@@ -10,8 +10,8 @@ export default {};
 </script>
 
 <style scoped>
-.Header {
-  background-color: green;
+.header {
+  /* background-color: green; */
   margin: 0px;
   padding: 0px;
   width: 100%;
@@ -20,7 +20,7 @@ export default {};
   top: 0;
 }
 
-.SignIn {
+.signIn {
   text-decoration: none;
   line-height: 40px;
   margin-left: 90%;
@@ -28,7 +28,7 @@ export default {};
   font-size: small;
 }
 
-.LogIn {
+.logIn {
   text-decoration: none;
   line-height: 40px;
   margin-left: 2%;
