@@ -5,12 +5,13 @@
     <hr />
   </div>
   <div class="container">
+    <div>payload:{{uName}} | {{uPassword}}</div>
     <label for="uname">
       <div class="container" style="margin-top: 2%">
         <b>Username</b>
       </div>
     </label>
-    <input type="text" placeholder="Enter Username" name="uname" required />
+    <input type="text" v-model="newUName" placeholder="Enter Username" required />
   </div>
   <div class="container">
     <label for="psw">
@@ -18,19 +19,45 @@
         <b>Password</b>
       </div>
     </label>
-    <input type="password" placeholder="Enter Password" name="psw" required />
+    <input type="password" v-model="newUPassword" placeholder="Enter Password" required />
   </div>
   <div class="container" style="margin-top: 20px">
-    <button type="submit">Login</button>
+    <button type="button" @click="setUName(); setUPassword(); ">Login</button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      newUName: this.$store.state.uName,
+      newUPassword: this.$store.state.uPassword,
+    };
+  },
+
+  methods: {
+    setUName() {
+      this.$store.commit('setNewUName', this.newUName);
+    },
+
+    setUPassword() {
+      this.$store.commit('setNewUPassword', this.newUPassword);
+    },
+  },
+
+  computed: {
+    uName() {
+      return this.$store.state.uName;
+    },
+
+    uPassword() {
+      return this.$store.state.uPassword;
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 input[type="text"],
 input[type="password"] {
   width: 35%;

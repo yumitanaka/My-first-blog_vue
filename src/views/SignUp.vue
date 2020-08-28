@@ -1,37 +1,94 @@
 <template>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <p>Please fill in this form to create an account.</p>
+    <hr />
     <div class="container">
-      <h2>Sign Up</h2>
-      <p>Please fill in this form to create an account.</p>
-      <hr />
-      <div class="container">
-        <label for="email">
-          <b>Email</b>
-        </label>
-      </div>
-      <input type="text" placeholder="Enter Email" name="email" required />
-      <div class="container">
-        <label for="psw">
-          <b>Password</b>
-        </label>
-      </div>
-      <input type="password" placeholder="Enter Password" name="psw" required />
-      <div class="container">
-        <label for="psw-repeat">
-          <b>Repeat Password</b>
-        </label>
-      </div>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" required />
-      <div class="container" style="margin-top: 20px">
-        <button type="submit" class="signupbtn">Sign Up</button>
-      </div>
-      <div class="container" style="margin-top: -20px">
-        <button type="button" class="cancelbtn">Cancel</button>
-      </div>
+      <div>payload:{{username}} | {{email}} | {{password}} | {{repeatpassword}}</div>
+      <label for="name">
+        <b>Username</b>
+      </label>
     </div>
+    <input type="text" v-model="newUserName" required />
+    <div class="container">
+      <label for="email">
+        <b>Email</b>
+      </label>
+    </div>
+    <input type="text" v-model="newEmail" required />
+    <div class="container">
+      <label for="psw">
+        <b>Password</b>
+      </label>
+    </div>
+    <input type="password" v-model="newPassword" required />
+    <div class="container">
+      <label for="psw-repeat">
+        <b>Repeat Password</b>
+      </label>
+    </div>
+    <input
+      type="password" v-model="newRepeatPassword" required />
+    <div class="container" style="margin-top: 20px">
+      <button
+        @click="setUserName(); setEmail(); setPassword(); setRepeatPassword()"
+        type="text"
+        class="signupbtn"
+      >Sign Up</button>
+    </div>
+    <div class="container" style="margin-top: -20px">
+      <button type="button" class="cancelbtn">Cancel</button>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      newUserName: this.$store.state.username,
+      newEmail: this.$store.state.email,
+      newPassword: this.$store.state.password,
+      newRepeatPassword: this.$store.state.repeatPassword,
+    };
+  },
+
+  methods: {
+    setUserName() {
+      this.$store.commit('setNewUserName', this.newUserName);
+    },
+
+    setEmail() {
+      this.$store.commit('setNewEmail', this.newEmail);
+    },
+
+    setPassword() {
+      this.$store.commit('setNewPassword', this.newPassword);
+    },
+
+    setRepeatPassword() {
+      this.$store.commit('setNewRepeatPassword', this.newRepeatPassword);
+    },
+  },
+
+  computed: {
+    username() {
+      return this.$store.state.username;
+    },
+
+    email() {
+      return this.$store.state.email;
+    },
+
+    password() {
+      return this.$store.state.password;
+    },
+
+    repeatpassword() {
+      return this.$store.state.repeatPassword;
+    },
+  },
+};
 </script>
 
 <style scoped>
