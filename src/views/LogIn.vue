@@ -22,7 +22,7 @@
     <input type="password" v-model="newUPassword" placeholder="Enter Password" required />
   </div>
   <div class="container" style="margin-top: 20px">
-    <button type="button" @click="setUName(); setUPassword(); ">Login</button>
+    <button type="button" @click="login">Login</button>
   </div>
 </template>
 
@@ -30,18 +30,21 @@
 export default {
   data() {
     return {
-      newUName: this.$store.state.uName,
-      newUPassword: this.$store.state.uPassword,
+      newUName: '',
+      newUPassword: '',
     };
   },
 
   methods: {
-    setUName() {
+    login() {
       this.$store.commit('setNewUName', this.newUName);
-    },
-
-    setUPassword() {
       this.$store.commit('setNewUPassword', this.newUPassword);
+      this.$store.commit('login');
+
+      if (this.$store.state.auth.token) {
+        console.log('state', this.$store.state.auth.token);
+        this.$router.push('/');
+      }
     },
   },
 

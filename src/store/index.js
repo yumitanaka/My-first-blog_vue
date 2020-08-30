@@ -2,6 +2,11 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
+    auth: {
+      id: null,
+      name: null,
+      token: null,
+    },
     username: 'Enter Username',
     email: 'Enter Email',
     password: 'Enter Password',
@@ -12,6 +17,17 @@ export default createStore({
 
   // Editar state
   mutations: {
+    login(state) { // chamada de API validar usuario
+      const response = {
+        id: 1,
+        name: 'Yu',
+        token: 'tokenAcessoLala',
+      };
+      state.auth.id = response.id;
+      state.auth.name = response.name;
+      state.auth.token = response.token;
+    },
+
     setNewUserName(state, payload) {
       // state =copia do store
       // payload = tudo que vier do componente
