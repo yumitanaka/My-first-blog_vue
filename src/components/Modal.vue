@@ -2,12 +2,12 @@
   <div v-if="open" class="modal">
     <div class="modal-content">
       <div class="btn-align">
-        <close-btn >&times;</close-btn>
+        <close-btn @click="close">&times;</close-btn>
       </div>
-      <div class="content">Conteudo a ser adicionado - {{open}}</div>
+      <div class="content">Is modal open? {{open}}</div>
       <div class="btn-align">
         <btn>Save</btn>
-        <btn style="margin-left:20px">Cancel</btn>
+        <btn @click="close" style="margin-left:20px">Cancel</btn>
       </div>
     </div>
   </div>
@@ -26,6 +26,12 @@ export default {
   computed: {
     open() {
       return this.$store.state.modal.isModalOpen;
+    },
+  },
+
+  methods: {
+    close() {
+      this.$store.commit('setisModalOpen', (this.$store.state.modal.isModalOpen = false));
     },
   },
 
@@ -57,7 +63,7 @@ export default {
 
 .content {
   height: 82%;
-   display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   background: silver;
