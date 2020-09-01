@@ -7,12 +7,23 @@ export default createStore({
       name: null,
       token: null,
     },
-    username: 'Enter Username',
-    email: 'Enter Email',
-    password: 'Enter Password',
-    repeatPassword: 'Repeat Password',
-    uName: 'Enter Username',
-    uPassword: 'Enter Password',
+
+    signup: {
+      username: null,
+      email: null,
+      password: null,
+      repeatPassword: null,
+    },
+
+    login: {
+      uName: null,
+      uPassword: null,
+    },
+
+    modal: {
+      isModalOpen: true,
+    },
+
   },
 
   // Editar state
@@ -62,6 +73,12 @@ export default createStore({
       console.log('state', state);
       console.log('payload', payload);
       state.uPassword = payload;
+    },
+
+    setisModalOpen(state, payload) {
+      console.log('state', state);
+      console.log('payload', payload);
+      state.isModalOpen = payload;
     },
   },
 

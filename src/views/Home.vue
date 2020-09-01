@@ -2,6 +2,7 @@
   <div class="home">
     <Header />
     <Body />
+    <modal />
   </div>
 </template>
 
@@ -9,12 +10,14 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue';
 import Body from '@/components/Body.vue';
+import Modal from '@/components/Modal.vue';
 
 export default {
   name: 'Home',
   components: {
     Header,
     Body,
+    Modal,
   },
 };
 </script>

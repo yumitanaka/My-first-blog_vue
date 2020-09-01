@@ -5,7 +5,7 @@
     <hr />
   </div>
   <div class="container">
-    <div>payload:{{uName}} | {{uPassword}}</div>
+    <!-- <div>payload:{{uName}} | {{uPassword}}</div> -->
     <label for="uname">
       <div class="container" style="margin-top: 2%">
         <b>Username</b>
@@ -50,11 +50,11 @@ export default {
 
   computed: {
     uName() {
-      return this.$store.state.uName;
+      return this.$store.state.login.uName;
     },
 
     uPassword() {
-      return this.$store.state.uPassword;
+      return this.$store.state.login.uPassword;
     },
   },
 };

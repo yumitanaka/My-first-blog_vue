@@ -1,17 +1,17 @@
 <template>
-  <div class="painelDireito">
-    <div class="divTextoBlog">
+  <div class="painel-direito">
+    <div class="div-texto-blog">
       <div class="divTituloPost">TITLE</div>
     </div>
-    <div class="divConteudo">
-      <div class="divCont">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-      <input class="tituloInput" type="text" />
-      <input class="painelInput" type="text" />
+    <div class="div-conteudo">
+      <div class="div-cont">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <input class="titulo-input" type="text" />
+      <input class="painel-input" type="text" />
     </div>
-    <div class="divBotao">
-      <button class="botaoEdit">Editar Postagem</button>
-      <button class="botaoDelete">Deletar Postagem</button>
-      <button class="botaoAlterar">Alterar Postagem</button>
+    <div class="div-botao">
+      <button class="botao-edit">Editar Postagem</button>
+      <button class="botao-delete">Deletar Postagem</button>
+      <button class="botao-alterar">Alterar Postagem</button>
     </div>
   </div>
 </template>
@@ -21,7 +21,7 @@ export default {};
 </script>
 
 <style scoped>
-.painelDireito {
+.painel-direito {
   width: 75%;
   height: 100%;
   position: fixed;
@@ -32,7 +32,7 @@ export default {};
   right: 0;
 }
 
-.divTextoBlog {
+.div-texto-blog {
   width: 95%;
   height: 2%;
   max-width: 100%;
@@ -47,7 +47,7 @@ export default {};
   display: none;
 }
 
-.divConteudo {
+.div-conteudo {
   width: 95%;
   height: 75%;
   max-width: 100%;
@@ -60,13 +60,13 @@ export default {};
 /*   background-color: yellow; */
 }
 
-.divCont {
+.div-cont {
   font-family: georgia;
   font-size: 20px;
   display: none;
 }
 
-.tituloInput {
+.titulo-input {
   width: 100%;
   height: 5%;
   border: 1px solid #d0d0d0;
@@ -77,7 +77,7 @@ export default {};
   transition: box-shadow 0.3s;
 }
 
-.painelInput {
+.painel-input {
   width: 100%;
   height: 90%;
   border: 1px solid #d0d0d0;
@@ -87,7 +87,7 @@ export default {};
   transition: box-shadow 0.3s;
 }
 
-.divBotao {
+.div-botao {
   text-align: center;
   height: 10%;
   width: 99%;
@@ -97,13 +97,13 @@ export default {};
   /* background-color: blue; */
 }
 
-.botaoEdit {
+.botao-edit {
   height: 36px;
   border: 1px solid #f2f2f2;
   border-radius: 4px;
 }
 
-.botaoDelete {
+.botao-delete {
   height: 36px;
   border: 1px solid #f2f2f2;
   border-radius: 4px;
@@ -111,7 +111,7 @@ export default {};
   margin-top: 2%;
 }
 
-.botaoAlterar {
+.botao-alterar {
   height: 36px;
   border: 1px solid #f2f2f2;
   border-radius: 4px;

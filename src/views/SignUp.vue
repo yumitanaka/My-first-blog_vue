@@ -4,31 +4,31 @@
     <p>Please fill in this form to create an account.</p>
     <hr />
     <div class="container">
-      <div>payload:{{username}} | {{email}} | {{password}} | {{repeatpassword}}</div>
+      <!-- <div>payload:{{username}} | {{email}} | {{password}} | {{repeatpassword}}</div> -->
       <label for="name">
         <b>Username</b>
       </label>
     </div>
-    <input type="text" v-model="newUserName" required />
+    <input type="text" v-model="newUserName" placeholder="Enter Username" required />
     <div class="container">
       <label for="email">
         <b>Email</b>
       </label>
     </div>
-    <input type="text" v-model="newEmail" required />
+    <input type="text" v-model="newEmail" placeholder="Enter Email" required />
     <div class="container">
       <label for="psw">
         <b>Password</b>
       </label>
     </div>
-    <input type="password" v-model="newPassword" required />
+    <input type="password" v-model="newPassword" placeholder="Enter Paswword" required />
     <div class="container">
       <label for="psw-repeat">
         <b>Repeat Password</b>
       </label>
     </div>
     <input
-      type="password" v-model="newRepeatPassword" required />
+      type="password" v-model="newRepeatPassword" placeholder="Repeat Password" required />
     <div class="container" style="margin-top: 20px">
       <button
         @click="setUserName(); setEmail(); setPassword(); setRepeatPassword()"
@@ -73,19 +73,19 @@ export default {
 
   computed: {
     username() {
-      return this.$store.state.username;
+      return this.$store.state.login.username;
     },
 
     email() {
-      return this.$store.state.email;
+      return this.$store.state.login.email;
     },
 
     password() {
-      return this.$store.state.password;
+      return this.$store.state.login.password;
     },
 
     repeatpassword() {
-      return this.$store.state.repeatPassword;
+      return this.$store.state.login.repeatPassword;
     },
   },
 };
