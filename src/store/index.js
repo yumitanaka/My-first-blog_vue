@@ -42,30 +42,30 @@ export default createStore({
     setNewUserName(state, payload) {
       // state =copia do store
       // payload = tudo que vier do componente
-      state.username = payload;
+      state.signup.username = payload;
     },
     setNewEmail(state, payload) {
-      state.email = payload;
+      state.signup.email = payload;
     },
     setNewPassword(state, payload) {
-      state.password = payload;
+      state.signup.password = payload;
     },
 
     setNewRepeatPassword(state, payload) {
-      state.repeatPassword = payload;
+      state.signup.repeatPassword = payload;
     },
 
     setNewUName(state, payload) {
-      state.uName = payload;
+      state.login.uName = payload;
     },
 
     setNewUPassword(state, payload) {
-      state.uPassword = payload;
+      state.login.uPassword = payload;
     },
 
     setisModalOpen(state, payload) {
       console.log('payload', payload);
-      state.isModalOpen = payload;
+      state.modal.isModalOpen = payload;
     },
   },
 

@@ -9,9 +9,9 @@
       <input class="painel-input" type="text" />
     </div>
     <div class="div-botao">
-      <button class="botao-edit">Editar Postagem</button>
-      <button class="botao-delete">Deletar Postagem</button>
-      <button class="botao-alterar">Alterar Postagem</button>
+      <button class="botao-edit">Edit Post</button>
+      <button class="botao-delete">Delete Post</button>
+      <button class="botao-alterar">Alter Post</button>
     </div>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {};
   z-index: 1;
   overflow-x: hidden;
   max-width: 75%;
-/*   background-color: orange; */
+  /*   background-color: orange; */
   right: 0;
 }
 
@@ -43,13 +43,13 @@ export default {};
   margin-left: 0.5%;
   font-family: georgia;
   font-size: 30px;
-/*   background-color: gray; */
-  display: none;
+  /* background-color: gray; */
+  /* display: none; */
 }
 
 .div-conteudo {
   width: 95%;
-  height: 75%;
+  height: 65%;
   max-width: 100%;
   text-align: left;
   padding: 20px;
@@ -57,13 +57,13 @@ export default {};
   margin-left: 0.5%;
   font-family: georgia;
   font-size: 20px;
-/*   background-color: yellow; */
+ /* background-color: yellow; */
 }
 
 .div-cont {
   font-family: georgia;
   font-size: 20px;
-  display: none;
+  /* display: none; */
 }
 
 .titulo-input {
@@ -75,6 +75,7 @@ export default {};
   box-shadow: 0 0 0 0 rgba(136, 136, 136, 0);
   font-size: small;
   transition: box-shadow 0.3s;
+  display: none;
 }
 
 .painel-input {
@@ -85,6 +86,7 @@ export default {};
   box-shadow: 0 0 0 0 rgba(136, 136, 136, 0);
   font-size: small;
   transition: box-shadow 0.3s;
+  display: none;
 }
 
 .div-botao {
@@ -117,6 +119,7 @@ export default {};
   border-radius: 4px;
   display: inline-block;
   margin-top: 2%;
+  margin-left: 20px;
   display: none;
 }
 </style>

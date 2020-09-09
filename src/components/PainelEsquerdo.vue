@@ -7,7 +7,7 @@
     <div class="painel-bottom">
       <div class="menu"></div>
       <div>
-        <btn>Criar/Editar Post</btn>
+        <btn>Create Post</btn>
       </div>
       <div class="icones">
         <img src="../assets/facebook.png" class="icon" />
@@ -24,6 +24,10 @@ import Btn from '@/components/Btn.vue';
 export default {
   components: {
     Btn,
+  },
+
+  methods: {
+
   },
 };
 </script>
@@ -81,6 +85,7 @@ export default {
   font-size: 12px;
   /*   background-color: yellow; */
   overflow-y: scroll;
+  margin-bottom: 20px;
 }
 
 .icones {

@@ -31,7 +31,7 @@ export default {
 
   methods: {
     close() {
-      this.$store.commit('setisModalOpen', (this.$store.state.modal.isModalOpen = false));
+      this.$store.commit('setisModalOpen', false);
     },
   },
 
