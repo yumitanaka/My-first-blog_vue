@@ -5,8 +5,6 @@
     </div>
     <div class="div-conteudo">
       <div class="div-cont">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-      <input class="titulo-input" type="text" />
-      <input class="painel-input" type="text" />
     </div>
     <div class="div-botao">
       <button class="botao-edit">Edit Post</button>
@@ -57,36 +55,13 @@ export default {};
   margin-left: 0.5%;
   font-family: georgia;
   font-size: 20px;
- /* background-color: yellow; */
+  /* background-color: yellow; */
 }
 
 .div-cont {
   font-family: georgia;
   font-size: 20px;
   /* display: none; */
-}
-
-.titulo-input {
-  width: 100%;
-  height: 5%;
-  border: 1px solid #d0d0d0;
-  margin-bottom: 10px;
-  outline: 0;
-  box-shadow: 0 0 0 0 rgba(136, 136, 136, 0);
-  font-size: small;
-  transition: box-shadow 0.3s;
-  display: none;
-}
-
-.painel-input {
-  width: 100%;
-  height: 90%;
-  border: 1px solid #d0d0d0;
-  outline: 0;
-  box-shadow: 0 0 0 0 rgba(136, 136, 136, 0);
-  font-size: small;
-  transition: box-shadow 0.3s;
-  display: none;
 }
 
 .div-botao {

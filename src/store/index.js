@@ -21,7 +21,7 @@ export default createStore({
     },
 
     modal: {
-      isModalOpen: true,
+      isModalOpen: false,
     },
 
   },
