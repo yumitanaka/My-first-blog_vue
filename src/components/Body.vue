@@ -1,8 +1,9 @@
 <template>
-<div class= 'estilo'>
-  <painel-esquerdo />
-  <painel-direito />
-</div>
+  <div class="estilo">
+    <painel-esquerdo @open-modal="e=>this.$store.commit('setisModalOpen', e)" />
+    <painel-direito />
+  </div>
+  <div class="content">Is modal open? {{open}}</div>
 </template>
 
 <script>
@@ -14,6 +15,12 @@ export default {
     PainelEsquerdo,
     PainelDireito,
   },
+
+  computed: {
+    open() {
+      return this.$store.state.modal.isModalOpen;
+    },
+  },
 };
 </script>
 
@@ -24,8 +31,8 @@ export default {
   width: 100%;
   height: 95%;
   position: fixed;
-  bottom:  0;
+  bottom: 0;
   left: 0;
-/*   background-color: silver; */
+  /*   background-color: silver; */
 }
 </style>

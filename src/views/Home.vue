@@ -2,7 +2,7 @@
   <div class="home">
     <Header />
     <Body />
-    <modal />
+    <modal  @close-modal="e=>this.$store.commit('setisModalOpen', e)"/>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ import Modal from '@/components/Modal.vue';
 
 export default {
   name: 'Home',
+
   components: {
     Header,
     Body,

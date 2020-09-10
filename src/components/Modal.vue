@@ -2,12 +2,12 @@
   <div v-if="open" class="modal">
     <div class="modal-content">
       <div class="btn-align">
-        <close-btn @click="close">&times;</close-btn>
+        <close-btn @click="$emit('close-modal', false)">&times;</close-btn>
       </div>
       <div class="content">Is modal open? {{open}}</div>
       <div class="btn-align">
         <btn>Save</btn>
-        <btn @click="close" style="margin-left:20px">Cancel</btn>
+        <btn  @click="$emit('close-modal', false)" style="margin-left:20px">Cancel</btn>
       </div>
     </div>
   </div>
@@ -28,13 +28,6 @@ export default {
       return this.$store.state.modal.isModalOpen;
     },
   },
-
-  methods: {
-    close() {
-      this.$store.commit('setisModalOpen', false);
-    },
-  },
-
 };
 </script>
 

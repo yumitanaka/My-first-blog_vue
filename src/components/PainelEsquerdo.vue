@@ -7,7 +7,7 @@
     <div class="painel-bottom">
       <div class="menu"></div>
       <div>
-        <btn>Create Post</btn>
+        <btn @click="$emit('open-modal', true)">Create Post</btn>
       </div>
       <div class="icones">
         <img src="../assets/facebook.png" class="icon" />
@@ -24,10 +24,6 @@ import Btn from '@/components/Btn.vue';
 export default {
   components: {
     Btn,
-  },
-
-  methods: {
-
   },
 };
 </script>
