@@ -1,10 +1,10 @@
 <template>
   <div class="painel-direito">
     <div class="div-texto-blog">
-      <div class="divTituloPost">TITLE</div>
+      <div class="divTituloPost">{{posts[selectedPost].title}}</div>
     </div>
     <div class="div-conteudo">
-      <div class="div-cont">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      <div class="div-cont">{{posts[selectedPost].body}}</div>
     </div>
     <div class="div-botao">
       <button class="botao-edit">Edit Post</button>
@@ -15,7 +15,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    posts() {
+      return this.$store.state.posts;
+    },
+
+    selectedPost() {
+      return (this.$store.state.post.selectedPost - 1);
+    },
+
+    postTitle() {
+      return this.$store.state.posts[0].title;
+    },
+  },
+};
 </script>
 
 <style scoped>

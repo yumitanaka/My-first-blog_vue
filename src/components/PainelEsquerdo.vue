@@ -5,11 +5,13 @@
       <div class="titulo">My First Blog</div>
     </div>
     <div class="painel-bottom">
-
       <div class="menu">
-        <div v-for="post in posts" :key="post.id" class="menu-item" @click="clickHandler(post.id)" >
-          {{post.title}}
-        </div>
+        <div
+          v-for="post in posts"
+          :key="post.id"
+          class="menu-item"
+          @click="clickHandler(post.id)"
+        >{{post.title}}</div>
       </div>
 
       <div>
@@ -36,11 +38,17 @@ export default {
     posts() {
       return this.$store.state.posts;
     },
+
+    selectedPost() {
+      return this.$store.state.post.selectedPost;
+    },
   },
 
   methods: {
     clickHandler(id) {
       console.log('clickou', id);
+      this.$store.commit('setSelectedPost', id);
+      console.log('SelectedPost: ', this.$store.state.post.selectedPost);
     },
   },
 };

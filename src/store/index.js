@@ -25,8 +25,7 @@ export default createStore({
     },
 
     post: {
-      titlePost: null,
-      contentPost: null,
+      selectedPost: null,
     },
 
     posts: [],
@@ -77,6 +76,11 @@ export default createStore({
     setNewPost: (state, post) => {
       state.posts.push(post);
       console.log('payload post', post);
+    },
+
+    setSelectedPost(state, payload) {
+      console.log('payload selectedPost', payload);
+      state.post.selectedPost = payload;
     },
 
     // setNewId(state, payload) {

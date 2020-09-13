@@ -47,10 +47,6 @@ export default {
       return this.$store.state.posts;
     },
 
-    // idPost() {
-    //   return this.$store.state.idPost.nextId;
-    // },
-
     open() {
       return this.$store.state.modal.isModalOpen;
     },
