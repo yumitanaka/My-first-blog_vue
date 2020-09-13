@@ -24,10 +24,6 @@ export default {
     selectedPost() {
       return (this.$store.state.post.selectedPost - 1);
     },
-
-    postTitle() {
-      return this.$store.state.posts[0].title;
-    },
   },
 };
 </script>
