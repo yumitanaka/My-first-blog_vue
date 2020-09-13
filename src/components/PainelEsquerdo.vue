@@ -5,7 +5,13 @@
       <div class="titulo">My First Blog</div>
     </div>
     <div class="painel-bottom">
-      <div class="menu"></div>
+
+      <div class="menu">
+        <div v-for="post in posts" :key="post.id" class="menu-item" @click="clickHandler(post.id)" >
+          {{post.title}}
+        </div>
+      </div>
+
       <div>
         <btn @click="$emit('open-modal', true)">Create Post</btn>
       </div>
@@ -24,6 +30,18 @@ import Btn from '@/components/Btn.vue';
 export default {
   components: {
     Btn,
+  },
+
+  computed: {
+    posts() {
+      return this.$store.state.posts;
+    },
+  },
+
+  methods: {
+    clickHandler(id) {
+      console.log('clickou', id);
+    },
   },
 };
 </script>
@@ -82,6 +100,11 @@ export default {
   /*   background-color: yellow; */
   overflow-y: scroll;
   margin-bottom: 20px;
+}
+
+.menu-item {
+  padding: 10px;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .icones {

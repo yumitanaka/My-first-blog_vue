@@ -24,6 +24,12 @@ export default createStore({
       isModalOpen: false,
     },
 
+    post: {
+      titlePost: null,
+      contentPost: null,
+    },
+
+    posts: [],
   },
 
   // Editar state
@@ -64,9 +70,19 @@ export default createStore({
     },
 
     setisModalOpen(state, payload) {
-      console.log('payload', payload);
+      console.log('payload modal', payload);
       state.modal.isModalOpen = payload;
     },
+
+    setNewPost: (state, post) => {
+      state.posts.push(post);
+      console.log('payload post', post);
+    },
+
+    // setNewId(state, payload) {
+    //   console.log('payload id: ', payload);
+    //   state.idPost.nextId = payload;
+    // },
   },
 
   actions: {

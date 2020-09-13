@@ -5,18 +5,22 @@
         <close-btn @click="$emit('close-modal', false)">&times;</close-btn>
       </div>
       <div class="content">
-        <input class="titulo-input" type="text" />
-        <input class="painel-input" type="text" />
+        <input class="titulo-input" type="text" v-model="inputData.title" />
+        <p>A mensagem é: {{ inputData.titlePost }}</p>
+        <textarea class="painel-input" v-model="inputData.body"></textarea>
+        <p>A mensagem é: {{ inputData.contentPost }}</p>
+        <div>{{posts}}</div>
       </div>
       <div class="btn-align">
-        <btn>Save</btn>
-        <btn @click="$emit('close-modal', false)" style="margin-left:20px">Cancel</btn>
+        <btn @click.prevent="save" :disabled="isDisabled" v-model="inputData.id">Save</btn>
+        <btn @click="$emit('close-modal', false)" style="margin-left:21px">Cancel</btn>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+// import { mapState, mapMutations } from 'vuex';
 import CloseBtn from '@/components/CloseBtn.vue';
 import Btn from '@/components/Btn.vue';
 
@@ -26,9 +30,66 @@ export default {
     Btn,
   },
 
+  data() {
+    return {
+      inputData: {},
+    };
+  },
+  // data() {
+  //   return {
+  //     titlePost: null,
+  //     contentPost: null,
+  //   };
+  // },
+
   computed: {
+    posts() {
+      return this.$store.state.posts;
+    },
+
+    // idPost() {
+    //   return this.$store.state.idPost.nextId;
+    // },
+
     open() {
       return this.$store.state.modal.isModalOpen;
+    },
+
+    isDisabled() {
+      return !this.inputData.title || !this.inputData.body;
+    },
+
+    // titlePost: {
+    //   get() {
+    //     return this.$store.state.posts[0].title;
+    //   },
+    //   set(value) {
+    //     this.$store.commit('setNewPostTitle', { value, index: 0 });
+    //   },
+    // },
+
+    // contentPost: {
+    //   get() {
+    //     return this.$store.state.posts[0].body;
+    //   },
+    //   set(value) {
+    //     this.$store.commit('setNewPostContent', { value, index: 0 });
+    //   },
+    // },
+
+    // ...mapState(['posts']),
+  },
+
+  methods: {
+    save() {
+      const id = this.$store.state.posts.length + 1;
+      const newPost = {
+        id,
+        title: this.inputData.title,
+        body: this.inputData.body,
+      };
+      this.$store.commit('setNewPost', newPost);
+      console.log('POSTS: ', JSON.stringify(this.$store.state.posts));
     },
   },
 };
@@ -39,7 +100,7 @@ export default {
   position: absolute;
   height: 100vh;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(1, 1, 1, 1.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,10 +136,9 @@ export default {
   font-size: small;
   transition: box-shadow 0.3s;
 }
-
 .painel-input {
   width: 99%;
-  height: 90%;
+  height: 70%;
   border: 1px solid #d0d0d0;
   outline: 0;
   box-shadow: 0 0 0 0 rgba(136, 136, 136, 0);

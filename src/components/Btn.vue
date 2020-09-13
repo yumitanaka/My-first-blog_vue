@@ -1,11 +1,18 @@
 <template>
-  <button class="btn">
+  <button class="btn" :disabled="disabled">
     <slot />
   </button>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    disabled: {
+      type: Boolean,
+      default: null,
+    },
+  },
+};
 </script>
 
 <style scoped>
