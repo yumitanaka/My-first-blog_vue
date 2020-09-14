@@ -1,15 +1,15 @@
 <template>
   <div class="painel-direito">
     <div class="div-texto-blog">
-      <div class="divTituloPost">{{posts[selectedPost].title}}</div>
+      <div class="divTituloPost">{{posts[selectedPost]}}</div>
     </div>
     <div class="div-conteudo">
-      <div class="div-cont">{{posts[selectedPost].body}}</div>
+      <div class="div-cont">{{posts[selectedPost]}}</div>
     </div>
     <div class="div-botao">
-      <button class="botao-edit">Edit Post</button>
-      <button class="botao-delete">Delete Post</button>
-      <button class="botao-alterar">Alter Post</button>
+      <button @click="$emit('open-modal', true), editPost" class="botao-edit">Edit Post</button>
+      <button @click="deletePost(selectedPost)" class="botao-delete">Delete Post</button>
+      <div>selectedPost: [{{selectedPost}}]</div>
     </div>
   </div>
 </template>
@@ -22,7 +22,25 @@ export default {
     },
 
     selectedPost() {
-      return (this.$store.state.post.selectedPost - 1);
+      return this.$store.state.post.selectedPost - 1;
+    },
+  },
+
+  methods: {
+    deletePost(selectedPost) {
+      const { posts } = this.$store.state;
+      console.log('delete selectedPost', selectedPost);
+      this.posts.splice(selectedPost, 1);
+
+      for (let index = 0; index < posts.length; index += 1) {
+        posts[index].id = index + 1;
+        console.log('index after delete', index);
+      }
+      console.log('POSTS: ', this.$store.state.posts);
+    },
+
+    editPost() {
+
     },
   },
 };
@@ -96,15 +114,5 @@ export default {
   border-radius: 4px;
   margin-left: 20px;
   margin-top: 2%;
-}
-
-.botao-alterar {
-  height: 36px;
-  border: 1px solid #f2f2f2;
-  border-radius: 4px;
-  display: inline-block;
-  margin-top: 2%;
-  margin-left: 20px;
-  display: none;
 }
 </style>

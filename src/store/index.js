@@ -79,7 +79,6 @@ export default createStore({
     },
 
     setSelectedPost(state, payload) {
-      console.log('payload selectedPost', payload);
       state.post.selectedPost = payload;
     },
 

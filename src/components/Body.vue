@@ -1,7 +1,7 @@
 <template>
   <div class="estilo">
     <painel-esquerdo @open-modal="e=>this.$store.commit('setisModalOpen', e)" />
-    <painel-direito />
+    <painel-direito @open-modal="e=>this.$store.commit('setisModalOpen', e)"/>
   </div>
   <div class="content">Is modal open? {{open}}</div>
 </template>

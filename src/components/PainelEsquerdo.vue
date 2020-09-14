@@ -46,9 +46,9 @@ export default {
 
   methods: {
     clickHandler(id) {
-      console.log('clickou', id);
+      // console.log('clickou', id);
       this.$store.commit('setSelectedPost', id);
-      console.log('SelectedPost: ', this.$store.state.post.selectedPost);
+      console.log('setSelectedPost SelectedPost: ', this.$store.state.post.selectedPost);
     },
   },
 };

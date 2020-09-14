@@ -2,25 +2,31 @@
   <div v-if="open" class="modal">
     <div class="modal-content">
       <div class="btn-align">
-        <close-btn @click="$emit('close-modal', false)">&times;</close-btn>
+        <close-btn @click="$emit('close-modal', false); clear()">&times;</close-btn>
       </div>
       <div class="content">
-        <input class="titulo-input" type="text" v-model="inputData.title" />
+        <input
+          class="titulo-input"
+          type="text"
+          v-model="inputData.title"
+          placeholder="Enter Title Post"
+        />
         <p>A mensagem é: {{ inputData.titlePost }}</p>
-        <textarea class="painel-input" v-model="inputData.body"></textarea>
+        <textarea class="painel-input" v-model="inputData.body"
+        placeholder="Enter Body Post"></textarea>
         <p>A mensagem é: {{ inputData.contentPost }}</p>
         <div>{{posts}}</div>
       </div>
       <div class="btn-align">
         <btn @click.prevent="save" :disabled="isDisabled" v-model="inputData.id">Save</btn>
-        <btn @click="$emit('close-modal', false)" style="margin-left:21px">Cancel</btn>
+        <btn @click="$emit('close-modal', false); clear()"
+        style="margin-left:21px">Cancel</btn>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// import { mapState, mapMutations } from 'vuex';
 import CloseBtn from '@/components/CloseBtn.vue';
 import Btn from '@/components/Btn.vue';
 
@@ -35,12 +41,6 @@ export default {
       inputData: {},
     };
   },
-  // data() {
-  //   return {
-  //     titlePost: null,
-  //     contentPost: null,
-  //   };
-  // },
 
   computed: {
     posts() {
@@ -79,6 +79,10 @@ export default {
   methods: {
     save() {
       const id = this.$store.state.posts.length + 1;
+      console.log(
+        'this.$store.state.posts.length',
+        this.$store.state.posts.length,
+      );
       const newPost = {
         id,
         title: this.inputData.title,
@@ -86,6 +90,15 @@ export default {
       };
       this.$store.commit('setNewPost', newPost);
       console.log('POSTS: ', JSON.stringify(this.$store.state.posts));
+
+      this.inputData.title = '';
+      this.inputData.body = '';
+    },
+
+    clear() {
+      this.inputData.title = '';
+      this.inputData.body = '';
+      // console.log('this.inputData.title:', this.inputData.title);
     },
   },
 };
