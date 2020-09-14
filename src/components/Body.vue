@@ -1,9 +1,10 @@
 <template>
   <div class="estilo">
     <painel-esquerdo @open-modal="e=>this.$store.commit('setisModalOpen', e)" />
-    <painel-direito @open-modal="e=>this.$store.commit('setisModalOpen', e)"/>
+    <painel-direito @open-modal="e=>this.$store.commit('setisModalEditOpen', e)" />
   </div>
   <div class="content">Is modal open? {{open}}</div>
+  <div class="content">Is modal edit open? {{openedit}}</div>
 </template>
 
 <script>
@@ -19,6 +20,10 @@ export default {
   computed: {
     open() {
       return this.$store.state.modal.isModalOpen;
+    },
+
+    openedit() {
+      return this.$store.state.modal.isModalEditOpen;
     },
   },
 };

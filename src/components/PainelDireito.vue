@@ -9,7 +9,7 @@
     <div class="div-botao">
       <button @click="$emit('open-modal', true), editPost" class="botao-edit">Edit Post</button>
       <button @click="deletePost(selectedPost)" class="botao-delete">Delete Post</button>
-      <div>selectedPost: [{{selectedPost}}]</div>
+      <!-- <div>selectedPost: [{{selectedPost}}]</div> -->
     </div>
   </div>
 </template>

@@ -22,6 +22,7 @@ export default createStore({
 
     modal: {
       isModalOpen: false,
+      isModalEditOpen: false,
     },
 
     post: {
@@ -71,6 +72,11 @@ export default createStore({
     setisModalOpen(state, payload) {
       console.log('payload modal', payload);
       state.modal.isModalOpen = payload;
+    },
+
+    setisModalEditOpen(state, payload) {
+      console.log('payload modal', payload);
+      state.modal.isModalEditOpen = payload;
     },
 
     setNewPost: (state, post) => {

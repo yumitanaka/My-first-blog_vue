@@ -2,6 +2,7 @@
   <div v-if="open" class="modal">
     <div class="modal-content">
       <div class="btn-align">
+        <div style="text-align: left">Criar Post</div>
         <close-btn @click="$emit('close-modal', false); clear()">&times;</close-btn>
       </div>
       <div class="content">
@@ -11,16 +12,13 @@
           v-model="inputData.title"
           placeholder="Enter Title Post"
         />
-        <p>A mensagem é: {{ inputData.titlePost }}</p>
         <textarea class="painel-input" v-model="inputData.body"
         placeholder="Enter Body Post"></textarea>
-        <p>A mensagem é: {{ inputData.contentPost }}</p>
         <div>{{posts}}</div>
       </div>
       <div class="btn-align">
         <btn @click.prevent="save" :disabled="isDisabled" v-model="inputData.id">Save</btn>
-        <btn @click="$emit('close-modal', false); clear()"
-        style="margin-left:21px">Cancel</btn>
+        <btn @click="$emit('close-modal', false); clear()" style="margin-left:21px">Cancel</btn>
       </div>
     </div>
   </div>
