@@ -1,7 +1,8 @@
 <template>
   <div class="header">
     <div v-if="isSignedIn">
-      Olá, {{name}}! | <button>Signout</button>
+      Olá, {{name}}! |
+      <btn>Signout</btn>
     </div>
     <div v-else>
       <router-link to="/signup">Sing Up</router-link>|
@@ -12,8 +13,14 @@
 </template>
 
 <script>
+import Btn from '@/components/Btn.vue';
+
 export default {
   created() {},
+
+  components: {
+    Btn,
+  },
 
   computed: {
     isSignedIn() {

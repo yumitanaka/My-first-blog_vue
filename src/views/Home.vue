@@ -2,7 +2,8 @@
   <div class="home">
     <Header />
     <Body />
-    <modal />
+    <modal @close-modal="e=>this.$store.commit('setisModalOpen', e)" />
+    <modal-edit @close-modal="e=>this.$store.commit('setisModalEditOpen', e)" />
   </div>
 </template>
 
@@ -11,13 +12,16 @@
 import Header from '@/components/Header.vue';
 import Body from '@/components/Body.vue';
 import Modal from '@/components/Modal.vue';
+import ModalEdit from '@/components/ModalEdit.vue';
 
 export default {
   name: 'Home',
+
   components: {
     Header,
     Body,
     Modal,
+    ModalEdit,
   },
 };
 </script>

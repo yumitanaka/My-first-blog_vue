@@ -1,23 +1,68 @@
 <template>
   <div class="painel-direito">
     <div class="div-texto-blog">
-      <div class="divTituloPost">TITLE</div>
+      <div class="divTituloPost">{{postTitle}}</div>
     </div>
     <div class="div-conteudo">
-      <div class="div-cont">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-      <input class="titulo-input" type="text" />
-      <input class="painel-input" type="text" />
+      <div class="div-cont">{{postBody}}</div>
     </div>
-    <div class="div-botao">
-      <button class="botao-edit">Editar Postagem</button>
-      <button class="botao-delete">Deletar Postagem</button>
-      <button class="botao-alterar">Alterar Postagem</button>
+    <div v-if="isSignedIn" class="div-botao">
+      <button @click="$emit('open-modal', true), editPost" class="botao-edit">Edit Post</button>
+      <button @click="deletePost(selectedPost)" class="botao-delete">Delete Post</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    isSignedIn() {
+      console.log('isSignedIn?', this.$store.state.auth.token);
+      return Boolean(this.$store.state.auth.token);
+    },
+
+    posts() {
+      return this.$store.state.posts;
+    },
+
+    selectedPost() {
+      return this.$store.state.post.selectedPost - 1;
+    },
+
+    postTitle() {
+      const postTitle = this.$store.state.posts[
+        this.$store.state.post.selectedPost - 1
+      ];
+      if (postTitle) {
+        return postTitle.title;
+      }
+      return '';
+    },
+
+    postBody() {
+      const postBody = this.$store.state.posts[
+        this.$store.state.post.selectedPost - 1
+      ];
+      if (postBody) {
+        return postBody.body;
+      }
+      return '';
+    },
+  },
+
+  methods: {
+    deletePost(selectedPost) {
+      const { posts } = this.$store.state;
+      console.log('delete selectedPost', selectedPost);
+      this.posts.splice(selectedPost, 1);
+
+      for (let index = 0; index < posts.length; index += 1) {
+        posts[index].id = index + 1;
+      }
+      console.log('POSTS: ', this.$store.state.posts);
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -28,7 +73,7 @@ export default {};
   z-index: 1;
   overflow-x: hidden;
   max-width: 75%;
-/*   background-color: orange; */
+  /*   background-color: orange; */
   right: 0;
 }
 
@@ -43,13 +88,13 @@ export default {};
   margin-left: 0.5%;
   font-family: georgia;
   font-size: 30px;
-/*   background-color: gray; */
-  display: none;
+  /* background-color: gray; */
+  /* display: none; */
 }
 
 .div-conteudo {
   width: 95%;
-  height: 75%;
+  height: 65%;
   max-width: 100%;
   text-align: left;
   padding: 20px;
@@ -57,34 +102,13 @@ export default {};
   margin-left: 0.5%;
   font-family: georgia;
   font-size: 20px;
-/*   background-color: yellow; */
+  /* background-color: yellow; */
 }
 
 .div-cont {
   font-family: georgia;
   font-size: 20px;
-  display: none;
-}
-
-.titulo-input {
-  width: 100%;
-  height: 5%;
-  border: 1px solid #d0d0d0;
-  margin-bottom: 10px;
-  outline: 0;
-  box-shadow: 0 0 0 0 rgba(136, 136, 136, 0);
-  font-size: small;
-  transition: box-shadow 0.3s;
-}
-
-.painel-input {
-  width: 100%;
-  height: 90%;
-  border: 1px solid #d0d0d0;
-  outline: 0;
-  box-shadow: 0 0 0 0 rgba(136, 136, 136, 0);
-  font-size: small;
-  transition: box-shadow 0.3s;
+  /* display: none; */
 }
 
 .div-botao {
@@ -109,14 +133,5 @@ export default {};
   border-radius: 4px;
   margin-left: 20px;
   margin-top: 2%;
-}
-
-.botao-alterar {
-  height: 36px;
-  border: 1px solid #f2f2f2;
-  border-radius: 4px;
-  display: inline-block;
-  margin-top: 2%;
-  display: none;
 }
 </style>

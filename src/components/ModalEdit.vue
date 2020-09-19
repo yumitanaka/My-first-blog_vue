@@ -2,23 +2,16 @@
   <div v-if="open" class="modal">
     <div class="modal-content">
       <div class="btn-align">
-        <div style="text-align: left">Criar Post</div>
-        <close-btn @click="$emit('close-modal', false); clear()">&times;</close-btn>
+        <div style="text-align: left">Editar Post</div>
+        <close-btn @click="$emit('close-modal', false)">&times;</close-btn>
       </div>
       <div class="content">
-        <input
-          class="titulo-input"
-          type="text"
-          v-model="inputData.title"
-          placeholder="Enter Title Post"
-        />
-        <textarea class="painel-input" v-model="inputData.body"
-        placeholder="Enter Body Post"></textarea>
+        <input class="titulo-input" type="text" v-model="posts[selectedPost].title" />
+        <textarea class="painel-input" v-model="posts[selectedPost].body"></textarea>
       </div>
       <div class="btn-align">
-        <btn @click.prevent="save"
-        :disabled="isDisabled" v-model="inputData.id">Save</btn>
-        <btn @click="$emit('close-modal', false); clear()" style="margin-left:21px">Cancel</btn>
+        <btn @click.prevent="save">Save</btn>
+        <btn @click="$emit('close-modal', false)" style="margin-left:21px">Cancel</btn>
       </div>
     </div>
   </div>
@@ -46,37 +39,30 @@ export default {
     },
 
     open() {
-      return this.$store.state.modal.isModalOpen;
+      return this.$store.state.modal.isModalEditOpen;
     },
 
-    isDisabled() {
-      return !this.inputData.title || !this.inputData.body;
+    selectedPost() {
+      return this.$store.state.post.selectedPost - 1;
     },
   },
 
   methods: {
     save() {
-      const id = this.$store.state.posts.length + 1;
-      console.log(
-        'this.$store.state.posts.length',
-        this.$store.state.posts.length,
-      );
-      const newPost = {
-        id,
-        title: this.inputData.title,
-        body: this.inputData.body,
-      };
-      this.$store.commit('setNewPost', newPost);
+      const { posts } = this.$store.state;
+      const { selectedPost } = this.$store.state.post;
+      console.log('Edit selectedPost', selectedPost);
+
+      for (let index = 0; index < posts.length; index += 1) {
+        if (selectedPost === index) {
+          posts[index].title = this.posts[selectedPost].title;
+          posts[index].body = this.posts[selectedPost].body;
+        }
+      }
+
       console.log('POSTS: ', JSON.stringify(this.$store.state.posts));
 
-      this.inputData.title = '';
-      this.inputData.body = '';
-    },
-
-    clear() {
-      this.inputData.title = '';
-      this.inputData.body = '';
-      // console.log('this.inputData.title:', this.inputData.title);
+      alert('Postagem editada com sucesso !');
     },
   },
 };

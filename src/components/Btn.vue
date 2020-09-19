@@ -1,22 +1,25 @@
 <template>
-<button class='btn'>
-      <slot />
-</button>
+  <button class="btn" :disabled="disabled">
+    <slot />
+  </button>
 </template>
 
 <script>
 export default {
-
+  props: {
+    disabled: {
+      type: Boolean,
+      default: null,
+    },
+  },
 };
 </script>
 
 <style scoped>
 .btn {
   height: 36px;
-  /* margin-top: 5%; */
   border: 1px solid #f2f2f2;
   border-radius: 4px;
   font-family: arial;
 }
-
 </style>
