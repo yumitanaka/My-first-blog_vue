@@ -14,10 +14,10 @@
         />
         <textarea class="painel-input" v-model="inputData.body"
         placeholder="Enter Body Post"></textarea>
-        <div>{{posts}}</div>
       </div>
       <div class="btn-align">
-        <btn @click.prevent="save" :disabled="isDisabled" v-model="inputData.id">Save</btn>
+        <btn @click.prevent="save"
+        :disabled="isDisabled" v-model="inputData.id">Save</btn>
         <btn @click="$emit('close-modal', false); clear()" style="margin-left:21px">Cancel</btn>
       </div>
     </div>
@@ -52,26 +52,6 @@ export default {
     isDisabled() {
       return !this.inputData.title || !this.inputData.body;
     },
-
-    // titlePost: {
-    //   get() {
-    //     return this.$store.state.posts[0].title;
-    //   },
-    //   set(value) {
-    //     this.$store.commit('setNewPostTitle', { value, index: 0 });
-    //   },
-    // },
-
-    // contentPost: {
-    //   get() {
-    //     return this.$store.state.posts[0].body;
-    //   },
-    //   set(value) {
-    //     this.$store.commit('setNewPostContent', { value, index: 0 });
-    //   },
-    // },
-
-    // ...mapState(['posts']),
   },
 
   methods: {

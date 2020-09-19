@@ -1,15 +1,14 @@
 <template>
   <div class="painel-direito">
     <div class="div-texto-blog">
-      <div class="divTituloPost">{{posts[selectedPost]}}</div>
+      <div class="divTituloPost">{{postTitle}}</div>
     </div>
     <div class="div-conteudo">
-      <div class="div-cont">{{posts[selectedPost]}}</div>
+      <div class="div-cont">{{postBody}}</div>
     </div>
-    <div class="div-botao">
+    <div v-if="isSignedIn" class="div-botao">
       <button @click="$emit('open-modal', true), editPost" class="botao-edit">Edit Post</button>
       <button @click="deletePost(selectedPost)" class="botao-delete">Delete Post</button>
-      <!-- <div>selectedPost: [{{selectedPost}}]</div> -->
     </div>
   </div>
 </template>
@@ -17,12 +16,37 @@
 <script>
 export default {
   computed: {
+    isSignedIn() {
+      console.log('isSignedIn?', this.$store.state.auth.token);
+      return Boolean(this.$store.state.auth.token);
+    },
+
     posts() {
       return this.$store.state.posts;
     },
 
     selectedPost() {
       return this.$store.state.post.selectedPost - 1;
+    },
+
+    postTitle() {
+      const postTitle = this.$store.state.posts[
+        this.$store.state.post.selectedPost - 1
+      ];
+      if (postTitle) {
+        return postTitle.title;
+      }
+      return '';
+    },
+
+    postBody() {
+      const postBody = this.$store.state.posts[
+        this.$store.state.post.selectedPost - 1
+      ];
+      if (postBody) {
+        return postBody.body;
+      }
+      return '';
     },
   },
 
@@ -34,13 +58,8 @@ export default {
 
       for (let index = 0; index < posts.length; index += 1) {
         posts[index].id = index + 1;
-        console.log('index after delete', index);
       }
       console.log('POSTS: ', this.$store.state.posts);
-    },
-
-    editPost() {
-
     },
   },
 };

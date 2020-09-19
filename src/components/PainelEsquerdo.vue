@@ -15,7 +15,7 @@
       </div>
 
       <div>
-        <btn @click="$emit('open-modal', true)">Create Post</btn>
+        <btn v-if="isSignedIn" @click="$emit('open-modal', true)">Create Post</btn>
       </div>
       <div class="icones">
         <img src="../assets/facebook.png" class="icon" />
@@ -35,6 +35,10 @@ export default {
   },
 
   computed: {
+    isSignedIn() {
+      return Boolean(this.$store.state.auth.token);
+    },
+
     posts() {
       return this.$store.state.posts;
     },
@@ -48,7 +52,10 @@ export default {
     clickHandler(id) {
       // console.log('clickou', id);
       this.$store.commit('setSelectedPost', id);
-      console.log('setSelectedPost SelectedPost: ', this.$store.state.post.selectedPost);
+      console.log(
+        'setSelectedPost SelectedPost: ',
+        this.$store.state.post.selectedPost,
+      );
     },
   },
 };

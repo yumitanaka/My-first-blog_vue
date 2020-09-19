@@ -8,7 +8,6 @@
       <div class="content">
         <input class="titulo-input" type="text" v-model="posts[selectedPost].title" />
         <textarea class="painel-input" v-model="posts[selectedPost].body"></textarea>
-        <!-- <div>{{posts}}</div> -->
       </div>
       <div class="btn-align">
         <btn @click.prevent="save">Save</btn>

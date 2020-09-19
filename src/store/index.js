@@ -87,11 +87,6 @@ export default createStore({
     setSelectedPost(state, payload) {
       state.post.selectedPost = payload;
     },
-
-    // setNewId(state, payload) {
-    //   console.log('payload id: ', payload);
-    //   state.idPost.nextId = payload;
-    // },
   },
 
   actions: {
