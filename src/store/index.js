@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import Axios from 'axios';
 
 export default createStore({
   state: {
@@ -43,6 +44,14 @@ export default createStore({
       state.auth.id = response.id;
       state.auth.name = response.name;
       state.auth.token = response.token;
+    },
+
+    async loadPosts(state) {
+      const res = await Axios.get('https://jsonplaceholder.typicode.com/posts');
+      if (res.status === 200) {
+        console.log('RES DATA: ', res.data);
+        state.posts = res.data;
+      }
     },
 
     setNewUserName(state, payload) {
