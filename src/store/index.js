@@ -30,6 +30,7 @@ export default createStore({
       selectedPost: null,
     },
 
+    // {id: 1, title: "titulo, "body": "corpo", "a": 'ddddd'}
     posts: [],
   },
 
@@ -52,6 +53,32 @@ export default createStore({
         console.log('RES DATA: ', res.data);
         state.posts = res.data;
       }
+    },
+
+    // payload => {id: xx, title: xx, body: xx}
+    async EditPost(state, payload) {
+      console.log('Edit selectedPost', payload);
+      const res = await Axios.put(`http://jsonplaceholder.typicode.com/posts/${payload.id}`, {
+        title: payload.title,
+        body: payload.body,
+      });
+      console.log('STATE POSTS: ', res);
+
+      // if pra verificar se foi atualizado pelo status===200
+      if (res.status === 200) {
+        state.posts = state.posts.map((post) => {
+          if (post.id === payload.id) {
+            return {
+              ...post,
+              title: payload.title,
+              body: payload.body,
+            };
+          }
+          return post;
+        });
+      }
+
+      alert('Postagem editada com sucesso !');
     },
 
     setNewUserName(state, payload) {

@@ -6,11 +6,11 @@
         <close-btn @click="$emit('close-modal', false)">&times;</close-btn>
       </div>
       <div class="content">
-        <input class="titulo-input" type="text" v-model="posts[selectedPost].title" />
-        <textarea class="painel-input" v-model="posts[selectedPost].body"></textarea>
+        <input class="titulo-input" type="text" v-model="title" />
+        <textarea class="painel-input" v-model="body"></textarea>
       </div>
       <div class="btn-align">
-        <btn @click.prevent="save">Save</btn>
+        <btn @click.prevent="save()">Save</btn>
         <btn @click="$emit('close-modal', false)" style="margin-left:21px">Cancel</btn>
       </div>
     </div>
@@ -29,8 +29,14 @@ export default {
 
   data() {
     return {
-      inputData: {},
+      title: '',
+      body: '',
     };
+  },
+
+  created() {
+    this.title = this.selectedPost.title;
+    this.body = this.selectedPost.body;
   },
 
   computed: {
@@ -43,26 +49,25 @@ export default {
     },
 
     selectedPost() {
-      return this.$store.state.post.selectedPost - 1;
+      const { selectedPost } = this.$store.state.post;
+      console.log(selectedPost);
+
+      // pesquisa no array dos posts e retorna o objeto do post selecionado
+      const post = this.$store.state.posts.find((p) => p.id === selectedPost);
+
+      return post || {};
     },
   },
 
   methods: {
-    save() {
-      const { posts } = this.$store.state;
-      const { selectedPost } = this.$store.state.post;
-      console.log('Edit selectedPost', selectedPost);
-
-      for (let index = 0; index < posts.length; index += 1) {
-        if (selectedPost === index) {
-          posts[index].title = this.posts[selectedPost].title;
-          posts[index].body = this.posts[selectedPost].body;
-        }
-      }
-
-      console.log('POSTS: ', JSON.stringify(this.$store.state.posts));
-
-      alert('Postagem editada com sucesso !');
+    async save() {
+      // id: this.selectedPost.id
+      // enviar um objeto {id: xx, title: xx, body: xx}
+      this.$store.commit('EditPost', {
+        id: this.selectedPost.id,
+        title: this.title,
+        body: this.body,
+      });
     },
   },
 };
