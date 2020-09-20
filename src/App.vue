@@ -4,6 +4,17 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+  components: {},
+
+  beforeCreate() {
+    this.$store.commit('loadPosts');
+  },
+};
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

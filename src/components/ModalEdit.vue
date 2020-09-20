@@ -2,23 +2,16 @@
   <div v-if="open" class="modal">
     <div class="modal-content">
       <div class="btn-align">
-        <div style="text-align: left">Criar Post</div>
-        <close-btn @click="$emit('close-modal', false); clear()">&times;</close-btn>
+        <div style="text-align: left">Editar Post</div>
+        <close-btn @click="$emit('close-modal', false)">&times;</close-btn>
       </div>
       <div class="content">
-        <input
-          class="titulo-input"
-          type="text"
-          v-model="inputData.title"
-          placeholder="Enter Title Post"
-        />
-        <textarea class="painel-input" v-model="inputData.body"
-        placeholder="Enter Body Post"></textarea>
+        <input class="titulo-input" type="text" v-model="title" />
+        <textarea class="painel-input" v-model="body"></textarea>
       </div>
       <div class="btn-align">
-        <btn @click.prevent="save"
-        :disabled="isDisabled" v-model="inputData.id">Save</btn>
-        <btn @click="$emit('close-modal', false); clear()" style="margin-left:21px">Cancel</btn>
+        <btn @click.prevent="save()">Save</btn>
+        <btn @click="$emit('close-modal', false)" style="margin-left:21px">Cancel</btn>
       </div>
     </div>
   </div>
@@ -36,8 +29,14 @@ export default {
 
   data() {
     return {
-      inputData: {},
+      title: '',
+      body: '',
     };
+  },
+
+  created() {
+    this.title = this.selectedPost.title;
+    this.body = this.selectedPost.body;
   },
 
   computed: {
@@ -46,37 +45,29 @@ export default {
     },
 
     open() {
-      return this.$store.state.modal.isModalOpen;
+      return this.$store.state.modal.isModalEditOpen;
     },
 
-    isDisabled() {
-      return !this.inputData.title || !this.inputData.body;
+    selectedPost() {
+      const { selectedPost } = this.$store.state.post;
+      console.log(selectedPost);
+
+      // pesquisa no array dos posts e retorna o objeto do post selecionado
+      const post = this.$store.state.posts.find((p) => p.id === selectedPost);
+
+      return post || {};
     },
   },
 
   methods: {
-    save() {
-      const id = this.$store.state.posts.length + 1;
-      console.log(
-        'this.$store.state.posts.length',
-        this.$store.state.posts.length,
-      );
-      const newPost = {
-        id,
-        title: this.inputData.title,
-        body: this.inputData.body,
-      };
-      this.$store.commit('setNewPost', newPost);
-      console.log('POSTS: ', JSON.stringify(this.$store.state.posts));
-
-      this.inputData.title = '';
-      this.inputData.body = '';
-    },
-
-    clear() {
-      this.inputData.title = '';
-      this.inputData.body = '';
-      // console.log('this.inputData.title:', this.inputData.title);
+    async save() {
+      // id: this.selectedPost.id
+      // enviar um objeto {id: xx, title: xx, body: xx}
+      this.$store.commit('EditPost', {
+        id: this.selectedPost.id,
+        title: this.title,
+        body: this.body,
+      });
     },
   },
 };

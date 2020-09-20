@@ -5,9 +5,17 @@
       <div class="titulo">My First Blog</div>
     </div>
     <div class="painel-bottom">
-      <div class="menu"></div>
+      <div class="menu">
+        <div
+          v-for="post in posts"
+          :key="post.id"
+          class="menu-item"
+          @click="clickHandler(post.id)"
+        >{{post.title}}</div>
+      </div>
+
       <div>
-        <btn>Criar/Editar Post</btn>
+        <btn v-if="isSignedIn" @click="$emit('open-modal', true)">Create Post</btn>
       </div>
       <div class="icones">
         <img src="../assets/facebook.png" class="icon" />
@@ -24,6 +32,31 @@ import Btn from '@/components/Btn.vue';
 export default {
   components: {
     Btn,
+  },
+
+  computed: {
+    isSignedIn() {
+      return Boolean(this.$store.state.auth.token);
+    },
+
+    posts() {
+      return this.$store.state.posts;
+    },
+
+    selectedPost() {
+      return this.$store.state.post.selectedPost;
+    },
+  },
+
+  methods: {
+    clickHandler(id) {
+      // console.log('clickou', id);
+      this.$store.commit('setSelectedPost', id);
+      console.log(
+        'setSelectedPost SelectedPost: ',
+        this.$store.state.post.selectedPost,
+      );
+    },
   },
 };
 </script>
@@ -81,6 +114,12 @@ export default {
   font-size: 12px;
   /*   background-color: yellow; */
   overflow-y: scroll;
+  margin-bottom: 20px;
+}
+
+.menu-item {
+  padding: 10px;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .icones {

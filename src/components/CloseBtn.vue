@@ -1,13 +1,11 @@
 <template>
-<button class='close-btn'>
-      <slot />
-</button>
+  <button class="close-btn">
+    <slot />
+  </button>
 </template>
 
 <script>
-export default {
-
-};
+export default {};
 </script>
 
 <style scoped>
@@ -15,5 +13,4 @@ export default {
   width: 30px;
   height: 30px;
 }
-
 </style>
